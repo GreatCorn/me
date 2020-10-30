@@ -1,0 +1,157 @@
+@font-face {
+	font-family: "penna";
+	src: url("penna.otf");
+}
+@font-face {
+	font-family: "rawline";
+	src: url("rawline-300.ttf");
+}
+
+BODY {
+	margin: 0;
+	margin-top: 64px;
+	font-family: "rawline";
+	background-color: #EFEDE8;
+	color: #1E1F21;
+	font-size: 20px;
+	text-align: center;
+}
+BODY::-webkit-scrollbar {
+  width: 8px;
+}
+ 
+BODY::-webkit-scrollbar-track {
+  background-color: #61666B;
+}
+ 
+BODY::-webkit-scrollbar-thumb {
+  background-color: #A09E9B;
+  box-shadow: 0 0 12px black;
+}
+H2 {
+	font-size: 36px;
+	font-weight: 900;
+	font-family: "penna";
+}
+H3 {
+	font-size: 32px;
+	font-weight: 900;
+	font-family: "penna";
+	margin: 4px;
+	white-space: normal;
+	height: 86px;
+}
+LI{
+	margin: 0.3em;
+}
+P {
+	margin: 0.3em;
+}
+PRE {
+	font-family: "rawline";
+	font-weight: 900;
+}
+TABLE {
+	text-align: left;
+	width: 100%;
+	border: 2px solid #61666B;
+	border-collapse: collapse;
+}
+TH {
+	border: 2px solid #61666B;
+}
+TD {
+	border: 1px solid #ADA79D;
+}
+
+.Activity {
+	width: 256px;
+	height: 316px;
+	background: #FFF;
+	display: inline-block;
+	padding: 12px;
+	margin: 8px;
+	white-space: nowrap;
+	text-align: center;
+	box-shadow: 0 0 4px black;
+}
+.Arrow {
+	margin: 0.5em;
+	display: inline-block;
+	transition: transform 0.3s ease;
+}
+.Content {
+	padding: 12px;
+}
+.Date{
+	font-size: 32px;
+	font-weight: 900;
+	font-family: "penna";
+	color: #A0A0A0;
+}
+.Description {
+	width: calc(50% - 12px);
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	padding: 8px;
+	vertical-align : top
+}
+.Menu{
+	display: block;
+	list-style-type: none;
+}
+.MenuClick{
+	cursor: pointer;
+	margin-left: -2em;
+}
+.NavBar {
+	top: 0;
+	font-size: 26px;
+	font-weight: 900;
+	font-family: "penna";
+	background: linear-gradient(0deg, white, #EFEDE8);
+	width: 100%;
+	position: fixed;
+	box-shadow: 0 0 8px black;
+	z-index: 12;
+}
+.NavBarLink {
+	padding: 16px;
+	display: inline-block;
+	text-decoration: none;
+}
+.NavBarLink:link {
+	color: #1E1F21;
+}
+.NavBarLink:visited {
+	color: #1E1F21;
+}
+.NavBarLink:hover {
+	color: #434549;
+}
+.NavBarLink:active {
+	color: #5B5954;
+}
+.Nested {
+	max-height: 0%;
+	transition: max-height 0.3s ease-in-out;
+	overflow: hidden;
+}
+.Preview {
+	width: calc(50% - 12px);
+	max-width: calc(50% - 12px);
+	display: inline-block;
+	position: relative;
+	vertical-align : top;
+	border-right: 1px solid #ADA79D;
+	overflow: hidden;
+}
+.Recent {
+	
+}
+.VR {
+	border-left: 1px solid #ADA79D;
+	display: inline;
+	position: relative;
+}
