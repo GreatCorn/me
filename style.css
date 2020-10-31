@@ -74,6 +74,10 @@ TD {
 	white-space: nowrap;
 	text-align: center;
 	box-shadow: 0 0 4px black;
+	transition: transform 0.5s ease;
+}
+.Activity:hover {
+	transform: scale(1.1);
 }
 .Arrow {
 	margin: 0.5em;
@@ -100,10 +104,16 @@ TD {
 .Menu{
 	display: block;
 	list-style-type: none;
+	border-bottom: 1px solid #ADA79D;
+	background: linear-gradient(0deg, white, #EFEDE8); 
 }
 .MenuClick{
 	cursor: pointer;
 	margin-left: -2em;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none; 
 }
 .NavBar {
 	top: 0;
