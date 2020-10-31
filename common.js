@@ -25,4 +25,21 @@ function Start(){
 			}
 		});
 	}
+	toggler = document.getElementsByClassName("Picture");
+	if (toggler.length > 0){
+		var modal = document.createElement("div");
+		modal.className = "Modal";
+		modal.onclick = function(){this.style.display = "none";}
+		document.body.appendChild(modal);
+		var modalIMG = document.createElement("img");
+		modalIMG.className = "ModalContent";
+		modalIMG.onclick = function(){window.open(this.src, "_blank");}
+		modal.appendChild(modalIMG);
+		for (i = 0; i < toggler.length; i++) {
+			toggler[i].addEventListener("click", function() {
+				modal.style.display = "block";
+				modalIMG.src = this.src;
+			});
+		}
+	}
 }
