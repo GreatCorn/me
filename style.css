@@ -82,6 +82,11 @@ TD {
 	display: inline-block;
 	transition: transform 0.3s ease;
 }
+.Briefing {
+	float: right;
+	text-align: left;
+	max-width: 280px;
+}
 .Content {
 	padding: 12px;
 }
@@ -182,8 +187,19 @@ TD {
 	padding: 12px;
 	border: 1px solid #ADA79D;
 	text-align: center;
-	display: block;
+	display: inline-block;
 	margin: 4px;
+}
+.PFP {
+	width: 256px;
+	height: 256px;
+}
+.PFPSmall {
+	max-width: 32px;
+	max-height: 32px;
+	margin: 4px;
+	display: inline-block;
+	vertical-align: middle;
 }
 .Preview {
 	width: calc(45% - 12px);
