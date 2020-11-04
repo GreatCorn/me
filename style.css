@@ -147,7 +147,7 @@ TD {
 }
 .NavBar {
 	top: 0;
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 900;
 	font-family: "montserrat";
 	background: linear-gradient(0deg, white, #EFEDE8);
@@ -155,9 +155,10 @@ TD {
 	position: fixed;
 	box-shadow: 0 0 8px black;
 	z-index: 12;
+	max-height: 48px;
 }
 .NavBarLink {
-	padding: 16px;
+	padding: 12px;
 	display: inline-block;
 	text-decoration: none;
 }
