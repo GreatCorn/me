@@ -124,7 +124,7 @@ function FormContent(){
 				modal.style.display = "block";
 				modalIMG.src = this.src;
 				modal.style.opacity = "0";
-				setTimeout(function(){modal.style.opacity = "1";}, 10);
+				setTimeout(function(){modal.style.opacity = "1";}, 50);
 			});
 		}
 	}
