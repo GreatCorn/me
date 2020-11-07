@@ -6,30 +6,33 @@
 	font-family: "rawline";
 	src: url("rawline-300.ttf");
 }
-
+A:visited {
+	color: #915174;
+}
 BODY {
 	margin: 0;
-	margin-top: 64px;
 	font-family: "rawline";
 	background-color: #EFEDE8;
 	color: #1E1F21;
 	font-size: 20px;
 	text-align: center;
+	background-image: url("back.jpg");
 }
 BODY::-webkit-scrollbar {
-  width: 8px;
+	width: 8px;
 }
 BODY::-webkit-scrollbar-track {
-  background-color: #61666B;
+	background-color: #61666B;
 }
 BODY::-webkit-scrollbar-thumb {
-  background-color: #A09E9B;
-  box-shadow: 0 0 12px black;
+	background-color: #A09E9B;
+	box-shadow: 0 0 12px black;
 }
 H2 {
 	font-size: 36px;
 	font-weight: 900;
 	font-family: "montserrat";
+	text-shadow: 0 4px 12px grey;
 }
 H3 {
 	font-size: 20px;
@@ -38,6 +41,7 @@ H3 {
 	margin: 4px;
 	white-space: normal;
 	height: 72px;
+	text-shadow: 0 1px 3px LightGrey;
 }
 LI{
 	margin: 0.3em;
@@ -50,6 +54,7 @@ PRE {
 	font-weight: 900;
 }
 TABLE {
+	position: relative;
 	text-align: left;
 	width: 100%;
 	border: 2px solid #61666B;
@@ -77,6 +82,9 @@ TD {
 .Activity:hover {
 	transform: scale(1.1);
 }
+.ActivityNight {
+	background: #27272D;
+}
 .Arrow {
 	margin: 0.5em;
 	display: inline-block;
@@ -89,6 +97,8 @@ TD {
 }
 .Content {
 	padding: 12px;
+	margin-top: 48px;
+	width: calc(100% - 24px);
 }
 .Date{
 	font-size: 12px;
@@ -130,6 +140,7 @@ TD {
 	z-index: 1;
 	cursor: pointer;
 	text-align: center;
+	transition: opacity 0.1s ease;
 }
 .ModalContent {
 	vertical-align:middle;
@@ -156,9 +167,12 @@ TD {
 	box-shadow: 0 0 8px black;
 	z-index: 12;
 	max-height: 48px;
+	text-shadow: 0 2px 3px LightGrey;
 }
 .NavBarLink {
 	padding: 12px;
+	padding-left: 6px;
+	padding-right: 6px;
 	display: inline-block;
 	text-decoration: none;
 }
@@ -178,6 +192,11 @@ TD {
 	max-height: 0%;
 	transition: max-height 0.3s ease-in-out;
 	overflow: hidden;
+}
+.Night {
+	background-color: #111216;
+	color: #DEDFE1;
+	background-image: none;
 }
 .Picture {
 	cursor: pointer;
