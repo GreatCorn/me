@@ -189,7 +189,7 @@ TD {
 	color: #5B5954;
 }
 .Nested {
-	max-height: 0%;
+	max-height: 0;
 	transition: max-height 0.3s ease-in-out;
 	overflow: hidden;
 }
@@ -228,7 +228,7 @@ TD {
 	position: relative;
 	vertical-align : top;
 	border-right: 1px solid #ADA79D;
-	overflow: hidden;
+	overflow: auto;
 }
 .Recent {
 	

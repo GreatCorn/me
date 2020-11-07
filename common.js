@@ -3,7 +3,7 @@ var nests;
 var navbar;
 
 function Start(){
-	document.body.innerHTML = '<DIV id=navbar class=NavBar><A href="/me/"><IMG id=homePageImg style="left: 0; position: absolute; filter: invert(0);" src="/me/banner.png"></A><A href="/me/about/" class=NavBarLink>ABOUT</A><DIV class=VR></DIV><A href="/me/work/" class=NavBarLink>MY WORK</A><DIV class=VR></DIV><A href="/me/friends/" class=NavBarLink>FRIENDS</A><DIV class=VR></DIV><A href="/me/contacts/" class=NavBarLink>CONTACTS</A><IMG id=nightModeImg style="right: 0; position: absolute" src="/me/night.png" onclick=NightMode()></DIV><DIV class=Content>'+document.body.innerHTML+'</DIV><HR id=LicenseClaim><SMALL>The work presented on this site has individual license per piece. The licenses are presented on the work pages.</SMALL>';
+	document.body.innerHTML = '<DIV id=navbar class=NavBar><A href="/me/"><IMG id=homePageImg style="left: 0; position: absolute; filter: invert(0);" src="/me/banner.png"></A><A href="/me/about/" class=NavBarLink>ABOUT</A><DIV class=VR></DIV><A href="/me/work/" class=NavBarLink>MY WORK</A><DIV class=VR></DIV><A href="/me/friends/" class=NavBarLink>FRIENDS</A><DIV class=VR></DIV><A href="/me/contacts/" class=NavBarLink>CONTACTS</A><IMG id=nightModeImg style="right: 0; position: absolute" src="/me/night.png" onclick=NightMode()></DIV><DIV class=Content>'+document.body.innerHTML+'</DIV><HR id=LicenseClaim><SMALL>The work presented on this site has individual license per piece. The licenses are presented on the work pages. The text information on this  site is licensed under a Commons Attribution 4.0 International License. © Yevhenii Ionenko (aka GreatCorn), 2020</SMALL>';
 	navbar = document.getElementById("navbar");
 	
 	FormContent();
@@ -19,6 +19,7 @@ function Start(){
 				return;
 			}
 			e.preventDefault();
+			dispatchEvent(new Event("beforeunload"));
 			history.pushState(null, null, el.href);
 			ChangePage();
 			return;
@@ -31,6 +32,7 @@ function Start(){
 	
 	window.onbeforeunload = function (){
 		for (i = 0; i < nests.length; i++) {
+			//console.log("SAVING", nests[i].menuOpen);
 			localStorage.setItem(location.pathname+"nest"+i.toString(), nests[i].menuOpen);
 		}
 	}
@@ -44,7 +46,6 @@ function LoadPage(url){
 }
 function ChangePage(){
 	LoadPage(window.location.href).then(function(responseText) {
-		dispatchEvent(new Event("beforeunload"));
 		let preview = document.getElementById("Preview");
 		if (preview)
 			preview.id = "";
@@ -74,6 +75,7 @@ function ChangePage(){
 			//OPEN NESTS
 			for (i = 0; i < nests.length; i++) {
 				openNest = localStorage.getItem(location.pathname+"nest"+i.toString());
+				//console.log("LOADING", openNest);
 				if (openNest == "true"){
 					nests[i].dispatchEvent(new Event("click"));
 				}
@@ -94,11 +96,11 @@ function FormContent(){
 		nests[i].addEventListener("click", function() {
 			this.menuOpen = !this.menuOpen;
 			if (this.menuOpen){
-				this.parentElement.querySelector(".Nested").style.maxHeight = "200%";
+				this.parentElement.querySelector(".Nested").style.maxHeight = "64em";
 				this.parentElement.querySelector(".Arrow").style.transform = "rotate(90deg)";
 			}
 			else{
-				this.parentElement.querySelector(".Nested").style.maxHeight = "0%";
+				this.parentElement.querySelector(".Nested").style.maxHeight = "0";
 				this.parentElement.querySelector(".Arrow").style.transform = "rotate(0deg)";
 			}
 		});
@@ -163,7 +165,7 @@ function NightMode(mode) {
 		objs = document.getElementsByClassName("Menu");
 		for (i=0; i<objs.length; i++)
 			objs[i].style.background = "linear-gradient(0deg, black, #111216)";
-		SetCookie("nightMode", "true");
+		SetCookie("nightMode", "true", 365);
 	}
 	else{
 		/*document.body.innerHTML = document.body.children[0].innerHTML;
@@ -218,7 +220,7 @@ function SetCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = "expires="+ d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=Lax";
 }
 function GetCookie(cname, cdefault) {
 	var name = cname + "=";
