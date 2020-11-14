@@ -114,6 +114,10 @@ TD {
 	padding: 8px;
 	vertical-align : top
 }
+.Icon{
+	background: white;
+	text-align: center;
+}
 .Menu{
 	display: block;
 	list-style-type: none;
@@ -150,6 +154,7 @@ TD {
 	margin-top: 64px;
 	z-index: 2;
 	box-shadow: 0 0 12px #000;
+	background: white;
 }
 .ModalHelper {
 	display: inline-block;
