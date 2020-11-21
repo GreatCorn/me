@@ -3,7 +3,7 @@ var nests;
 var navbar;
 
 function Start(){
-	document.body.innerHTML = '<DIV id=navbar class=NavBar><A href="/me/"><IMG id=homePageImg style="left: 0; position: absolute; filter: invert(0);" src="/me/banner.png"></A><A href="/me/about/" class=NavBarLink>ABOUT</A><DIV class=VR></DIV><A href="/me/work/" class=NavBarLink>MY WORK</A><DIV class=VR></DIV><A href="/me/friends/" class=NavBarLink>FRIENDS</A><DIV class=VR></DIV><A href="/me/contacts/" class=NavBarLink>CONTACTS</A><IMG id=nightModeImg style="right: 0; position: absolute" src="/me/night.png" onclick=NightMode()></DIV><DIV class=Content>'+document.body.innerHTML+'</DIV><HR id=LicenseClaim><SMALL>The work presented on this site has individual license per piece. The licenses are presented on the work pages. The text information on this  site is licensed under a Commons Attribution 4.0 International License. © Yevhenii Ionenko (aka GreatCorn), 2020</SMALL>';
+	document.body.innerHTML = '<DIV id=navbar class=NavBar><A href="/me/"><IMG id=homePageImg style="left: 0; position: absolute; filter: invert(0);" src="/me/banner.png"></A><A href="/me/about/" class=NavBarLink>ABOUT</A><DIV class=VR></DIV><A href="/me/work/" class=NavBarLink>MY WORK</A><DIV class=VR></DIV><A href="/me/friends.html" class=NavBarLink>FRIENDS</A><DIV class=VR></DIV><A href="/me/contacts/" class=NavBarLink>CONTACTS</A><IMG id=nightModeImg style="right: 0; position: absolute" src="/me/night.png" onclick=NightMode()></DIV><DIV class=Content>'+document.body.innerHTML+'</DIV><HR id=LicenseClaim><SMALL>The work presented on this site has individual license per piece. The licenses are presented on the work pages. The content licensed under the GreatCorn name refers to copyright being held by Yevhenii Ionenko. The text information on this site is licensed under a Commons Attribution 4.0 International License. © Yevhenii Ionenko (aka GreatCorn), 2020<BR>The website is work-in-progress.</SMALL>';
 	navbar = document.getElementById("navbar");
 	
 	FormContent();
@@ -25,6 +25,10 @@ function Start(){
 			return;
 		}
 	});
+	window.addEventListener("resize", function(){
+		Resize();
+	});
+	Resize();
 	window.addEventListener('popstate', ChangePage);
 	
 	if (window.innerWidth < 828)
@@ -40,13 +44,34 @@ function Start(){
 	if (GetCookie("nightMode", "false") == "true")
 		NightMode(true);
 }
-
+function Resize(){
+	let prevlist = document.getElementsByClassName("preview");
+	let preview = prevlist[prevlist.length-1];
+	let description = document.getElementById("description");
+	if (description){
+		if (window.innerHeight > window.innerWidth){
+			console.log("Portrait orientation");
+			preview.style.width = "100%";
+			preview.children[0].height = window.innerHeight-72;
+			description.style.width = "99%";
+		}
+		else{
+			console.log("Landscape orientation");
+			preview.style.width = "calc(45% - 12px)";
+			preview.children[0].height = document.getElementById("description").offsetHeight;
+			description.style.width = "calc(55% - 12px)";
+		}
+	}
+}
 function LoadPage(url){
 	return fetch(url, {method: 'GET'}).then(function(response){return response.text();});
 }
 function ChangePage(){
 	LoadPage(window.location.href).then(function(responseText) {
-		let preview = document.getElementById("Preview");
+		let preview = document.getElementById("preview");
+		if (preview)
+			preview.id = "";
+		preview = document.getElementById("description");
 		if (preview)
 			preview.id = "";
 		let modal = document.getElementsByClassName("Modal");
@@ -57,6 +82,7 @@ function ChangePage(){
 		wrapper.style.position = "absolute";
 		wrapper.style.top = "0"; wrapper.style.left = "0";
 		wrapper.innerHTML = responseText;
+		document.title = wrapper.getElementsByTagName("TITLE")[0].innerText;
 		var oldContent = document.querySelector(".Content");
 		document.body.insertBefore(wrapper, document.getElementById("LicenseClaim"));
 		FormContent();
@@ -128,6 +154,7 @@ function FormContent(){
 			});
 		}
 	}
+	Resize();
 	//FORM SORTERS
 	toggler = document.getElementsByClassName("TableSorter");
 	for (i = 0; i < toggler.length; i++) {

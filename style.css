@@ -6,6 +6,9 @@
 	font-family: "rawline";
 	src: url("rawline-300.ttf");
 }
+A {
+	word-wrap: break-word;
+}
 A:visited {
 	color: #915174;
 }
@@ -33,6 +36,7 @@ H2 {
 	font-weight: 900;
 	font-family: "montserrat";
 	text-shadow: 0 4px 12px grey;
+	word-wrap: break-word;
 }
 H3 {
 	font-size: 20px;
@@ -228,7 +232,6 @@ TD {
 }
 .Preview {
 	width: calc(45% - 12px);
-	max-width: calc(50% - 12px);
 	display: inline-block;
 	position: relative;
 	vertical-align : top;
