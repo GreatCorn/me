@@ -37,7 +37,7 @@ function Start(){
 	window.onbeforeunload = function (){
 		for (i = 0; i < nests.length; i++) {
 			//console.log("SAVING", nests[i].menuOpen);
-			localStorage.setItem(location.pathname+"nest"+i.toString(), nests[i].menuOpen);
+			sessionStorage.setItem(location.pathname+"nest"+i.toString(), nests[i].menuOpen);
 		}
 	}
 	
@@ -54,20 +54,47 @@ function Resize(){
 			preview.style.width = "100%";
 			preview.children[0].height = window.innerHeight-72;
 			description.style.width = "99%";
+			let recent = document.getElementsByClassName("Recent");
+			for (i=0; i<recent.length; i++)
+				recent[i].style.textAlign = "center";
 		}
 		else{
 			console.log("Landscape orientation");
 			preview.style.width = "calc(45% - 12px)";
 			preview.children[0].height = document.getElementById("description").offsetHeight;
 			description.style.width = "calc(55% - 12px)";
+			let recent = document.getElementsByClassName("Recent");
+			for (i=0; i<recent.length; i++)
+				recent[i].style.textAlign = "left";
 		}
 	}
 }
-function LoadPage(url){
-	return fetch(url, {method: 'GET'}).then(function(response){return response.text();});
+function LoadPage(url, done){
+	var loading;
+	var loadWait = setTimeout(function(){
+		loading = document.createElement("div");
+		loading.className = "Loading";
+		loading.animate({opacity: [0, 1]}, 200);
+		document.body.appendChild(loading);
+	}, 500);
+	//return fetch(url, {method: 'GET'}).then(function(response){return response.text();});
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", url, true);
+	rawFile.onload = function ()
+	{
+		done(rawFile.responseText);
+		clearTimeout(loadWait);
+		if (loading){
+			let fadeout = loading.animate({opacity: [1, 0]}, 200);
+			fadeout.onfinish = function (){
+				loading.remove();
+			}
+		}
+	}
+	rawFile.send(null);
 }
 function ChangePage(){
-	LoadPage(window.location.href).then(function(responseText) {
+	LoadPage(window.location.href, function(responseText) {
 		let preview = document.getElementById("preview");
 		if (preview)
 			preview.id = "";
@@ -97,17 +124,8 @@ function ChangePage(){
 		fadein.onfinish = function (){
 			wrapper.style.position = "relative";
 			oldContent.remove();
-			var openNest;
-			//OPEN NESTS
-			for (i = 0; i < nests.length; i++) {
-				openNest = localStorage.getItem(location.pathname+"nest"+i.toString());
-				//console.log("LOADING", openNest);
-				if (openNest == "true"){
-					nests[i].dispatchEvent(new Event("click"));
-				}
-			}
 		}
-	})
+	});
 }
 function FormContent(){
 	//PREVIEW SAME HEIGHT
@@ -131,12 +149,26 @@ function FormContent(){
 			}
 		});
 	}
+	var openNest;
+	//OPEN NESTS
+	for (i = 0; i < nests.length; i++) {
+		openNest = sessionStorage.getItem(location.pathname+"nest"+i.toString());
+		//console.log("LOADING", openNest);
+		if (openNest == "true"){
+			nests[i].dispatchEvent(new Event("click"));
+		}
+	}
 	//FORM PICTURES
 	var toggler = document.getElementsByClassName("Picture");
 	if (toggler.length > 0){
 		var modal = document.createElement("div");
 		modal.className = "Modal";
-		modal.onclick = function(){this.style.display = "none";}
+		modal.onclick = function(){
+			let fadeout = modal.animate({opacity: [1, 0]}, 50);
+			fadeout.onfinish = function (){
+				modal.style.display = "none";
+			}
+		}
 		document.body.appendChild(modal);
 		var modalHelper = document.createElement("span");
 		modalHelper.className = "ModalHelper";
@@ -149,8 +181,8 @@ function FormContent(){
 			toggler[i].addEventListener("click", function() {
 				modal.style.display = "block";
 				modalIMG.src = this.src;
-				modal.style.opacity = "0";
-				setTimeout(function(){modal.style.opacity = "1";}, 50);
+				//modal.style.opacity = "0";
+				modal.animate({opacity: [0, 1]}, 50);
 			});
 		}
 	}
