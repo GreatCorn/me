@@ -52,6 +52,7 @@ function Resize(){
 		if (window.innerHeight > window.innerWidth){
 			console.log("Portrait orientation");
 			preview.style.width = "100%";
+			preview.style.boxShadow = "0 8px 8px -8px black";
 			preview.children[0].style.maxHeight = window.innerHeight-72;
 			description.style.width = "99%";
 			let recent = document.getElementsByClassName("Recent");
@@ -61,7 +62,8 @@ function Resize(){
 		else{
 			console.log("Landscape orientation");
 			preview.style.width = "calc(45% - 12px)";
-			preview.children[0].style.maxHeight = document.getElementById("description").offsetHeight;
+			preview.style.boxShadow = "none";
+			preview.children[0].style.maxHeight = "unset";
 			description.style.width = "calc(55% - 12px)";
 			let recent = document.getElementsByClassName("Recent");
 			for (i=0; i<recent.length; i++)
