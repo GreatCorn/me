@@ -1,0 +1,4 @@
+1. Gaussian blur: 32;
+2. HSV Saturation: 75, Value: -32;
+3. Color Abberation: [0.01], [0.00], [-0.01];
+4. Erase middle Width: 1500, Hardness: 0%.

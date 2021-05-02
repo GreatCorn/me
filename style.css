@@ -20,6 +20,7 @@ BODY {
 	font-size: 20px;
 	text-align: center;
 	background-image: url("back.jpg");
+	-webkit-tap-highlight-color: rgba(0.5, 0.5, 0.5, 0.2);
 }
 BODY::-webkit-scrollbar {
 	width: 8px;
@@ -195,6 +196,12 @@ TD {
 	padding-right: 6px;
 	display: inline-block;
 	text-decoration: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .NavBarLink:link {
 	color: #1E1F21;

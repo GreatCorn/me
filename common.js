@@ -31,9 +31,6 @@ function Start(){
 	Resize();
 	window.addEventListener('popstate', ChangePage);
 	
-	if (window.innerWidth < 828)
-		document.getElementById("homePageImg").src = "/me/bannerCorn.png"
-	
 	window.onbeforeunload = function (){
 		for (i = 0; i < nests.length; i++) {
 			//console.log("SAVING", nests[i].menuOpen);
@@ -43,6 +40,10 @@ function Start(){
 	
 	if (GetCookie("nightMode", "false") == "true")
 		NightMode(true);
+	
+	//FORM BANNER
+	if ((document.getElementsByClassName("BannerWrapper").length > 0) && (typeof LoadBanner === "function"))
+		LoadBanner();
 }
 function Resize(){
 	let prevlist = document.getElementsByClassName("preview");
@@ -70,6 +71,8 @@ function Resize(){
 				recent[i].style.textAlign = "left";
 		}
 	}
+	if (window.innerWidth < 828)
+		document.getElementById("homePageImg").src = "/me/bannerCorn.png"
 }
 function LoadPage(url, done){
 	var loading;
@@ -127,6 +130,12 @@ function ChangePage(){
 			wrapper.style.position = "relative";
 			oldContent.remove();
 		}
+		//FORM BANNER
+		if ((wrapper.getElementsByClassName("BannerWrapper").length > 0) && (typeof LoadBanner === "function"))
+			LoadBanner();
+		//UNFORM BANNER
+		if ((oldContent.getElementsByClassName("BannerWrapper").length > 0) && (typeof UnloadBanner === "function"))
+			UnloadBanner();
 	});
 }
 function FormContent(){
