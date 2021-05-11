@@ -2,6 +2,17 @@ var night = false;
 var nests;
 var navbar;
 
+const banners = [	"bitonicOverflow",
+					"bleaks",
+					"catDinner",
+					"dreath",
+					"kurlykistan",
+					"peccata"];
+var banner;
+var bannerIndex = -1;
+var images = [];
+var switchTimer;
+
 function Start(){
 	document.body.innerHTML = '<DIV id=navbar class=NavBar><A href="/me/"><IMG id=homePageImg style="left: 0; position: absolute; filter: invert(0);" src="/me/banner.png"></A><A href="/me/about/" class=NavBarLink>ABOUT</A><DIV class=VR></DIV><A href="/me/work/" class=NavBarLink>MY WORK</A><DIV class=VR></DIV><A href="/me/friends.html" class=NavBarLink>FRIENDS</A><DIV class=VR></DIV><A href="/me/contacts/" class=NavBarLink>CONTACTS</A><IMG id=nightModeImg style="right: 0; position: absolute" src="/me/night.png" onclick=NightMode()></DIV><DIV class=Content>'+document.body.innerHTML+'</DIV><HR id=LicenseClaim><SMALL>The work presented on this site has individual license per piece. The licenses are presented on the work pages. The content licensed under the GreatCorn name refers to copyright being held by Yevhenii Ionenko. The text information on this site is licensed under a Commons Attribution 4.0 International License. © Yevhenii Ionenko (aka GreatCorn), 2020-2021<BR>The website is work-in-progress.</SMALL>';
 	navbar = document.getElementById("navbar");
@@ -42,7 +53,7 @@ function Start(){
 		NightMode(true);
 	
 	//FORM BANNER
-	if ((document.getElementsByClassName("BannerWrapper").length > 0) && (typeof LoadBanner === "function"))
+	if (document.getElementsByClassName("BannerWrapper").length > 0)
 		LoadBanner();
 }
 function Resize(){
@@ -131,10 +142,11 @@ function ChangePage(){
 			oldContent.remove();
 		}
 		//FORM BANNER
-		if ((wrapper.getElementsByClassName("BannerWrapper").length > 0) && (typeof LoadBanner === "function"))
+		console.log(wrapper.getElementsByClassName("BannerWrapper"));
+		if (wrapper.getElementsByClassName("BannerWrapper").length > 0)
 			LoadBanner();
 		//UNFORM BANNER
-		if ((oldContent.getElementsByClassName("BannerWrapper").length > 0) && (typeof UnloadBanner === "function"))
+		if (oldContent.getElementsByClassName("BannerWrapper").length > 0)
 			UnloadBanner();
 	});
 }
@@ -307,4 +319,55 @@ function GetCookie(cname, cdefault) {
 	}
 	SetCookie(cname, cdefault, 365);
 	return cdefault;
+}
+
+function LoadBanner(){
+	banner = document.getElementById("Banner");
+	Shuffle(banners);
+	for (let i = 0; i < banners.length; ++i){
+		let image = document.createElement("img");
+		image.className = "Banner";
+		image.src = "/me/banner/"+banners[i]+".jpg";
+		banner.prepend(image);
+		images.push(image);
+	}
+	SwitchBanner();
+	
+	console.log("Loaded banner.");
+}
+function UnloadBanner(){
+	bannerIndex = -1;
+	images = [];
+	clearTimeout(switchTimer);
+	
+	console.log("Unloaded banner.");
+}
+function SwitchBanner(previous){
+	if (previous == null)
+		previous = false;
+	if (!previous){
+		++bannerIndex;
+		if (bannerIndex >= images.length)
+			bannerIndex = 0;
+	}
+	else{
+		--bannerIndex;
+		if (bannerIndex < 0)
+			bannerIndex = images.length-1;
+	}
+	for (let i = 0; i < images.length; ++i){
+		if (i == bannerIndex)
+			images[i].style.opacity = 1;
+		else
+			images[i].style.opacity = 0;
+	}
+	banner.href = "/me/work/"+banners[bannerIndex]+".html";
+	clearTimeout(switchTimer);
+	switchTimer = setTimeout(SwitchBanner, 5000);
+}
+function Shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
 }

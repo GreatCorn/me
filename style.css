@@ -96,6 +96,15 @@ TD {
 	display: inline-block;
 	transition: transform 0.3s ease;
 }
+.Banner {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: opacity 2s ease;
+}
 .Briefing {
 	float: right;
 	text-align: left;
@@ -258,6 +267,17 @@ TD {
 }
 .Recent {
 	
+}
+.Switcher {
+	background-color: rgba(32, 32, 32, 0.5);
+	position:absolute;
+	z-index: 32;
+	width: 32px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
 }
 .TableSorter {
 	cursor: pointer;
