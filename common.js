@@ -29,7 +29,7 @@ function Start(){
 				location.reload();
 				return;
 			}
-			let extension = location.href.split('.').pop();
+			let extension = el.href.split('.').pop();
 			if (["7z", "jpg", "mp3", "pdf", "png", "rar", "wav", "zip"].indexOf(extension) != -1)
 				return;
 			e.preventDefault();
