@@ -24,11 +24,14 @@ function Start(){
 		while (el && !el.href)
 			el = el.parentNode;
 		
-		if (el && el.host === location.host){
+		if (el && el.href.indexOf("greatcorn.github.io/me/") != -1){
 			if (el.href == location.href){
 				location.reload();
 				return;
 			}
+			let extension = location.href.split('.').pop();
+			if (["7z", "jpg", "mp3", "pdf", "png", "rar", "wav", "zip"].indexOf(extension) != -1)
+				return;
 			e.preventDefault();
 			dispatchEvent(new Event("beforeunload"));
 			history.pushState(null, null, el.href);
