@@ -59,6 +59,9 @@ PRE {
 	font-weight: 900;
 	margin: 4px;
 }
+SMALL {
+	font-size: 12px;
+}
 TABLE {
 	position: relative;
 	text-align: left;
