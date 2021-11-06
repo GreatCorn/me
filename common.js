@@ -25,7 +25,7 @@ function Start(){
 		while (el && !el.href)
 			el = el.parentNode;
 		
-		if (el && el.href.indexOf("greatcorn.github.io/me/") != -1){
+		if (el && el.href.indexOf("/me/") != -1){
 			if (el.href == location.href){
 				location.reload();
 				return;
@@ -53,12 +53,22 @@ function Start(){
 		}
 	}
 	
-	if (GetCookie("nightMode", "false") == "true")
+	if ((GetCookie("nightMode", "false") == "true") || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches))
 		NightMode(true);
+	
+	if (location.href.indexOf("#") != -1)
+		window.scrollTo({
+			top: document.getElementById(location.href.substr(location.href.indexOf("#")+1)).offsetTop,
+			behavior: "smooth"
+		});
 	
 	//FORM BANNER
 	if (document.getElementsByClassName("BannerWrapper").length > 0)
 		LoadBanner();
+	
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+		NightMode(e.matches);
+	});
 }
 function Resize(){
 	let prevlist = document.getElementsByClassName("preview");
@@ -144,6 +154,11 @@ function ChangePage(){
 		fadein.onfinish = function (){
 			wrapper.style.position = "relative";
 			oldContent.remove();
+			if (location.href.indexOf("#") != -1)
+				window.scrollTo({
+					top: document.getElementById(location.href.substr(location.href.indexOf("#")+1)).offsetTop,
+					behavior: "smooth"
+				});
 		}
 		//FORM BANNER
 		console.log(wrapper.getElementsByClassName("BannerWrapper"));
