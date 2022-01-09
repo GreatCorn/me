@@ -8,7 +8,8 @@ const banners = [	"bitonicOverflow",
 					"dreath",
 					"kurlykistan",
 					"peccata",
-					"symphony1"];
+					"symphony1",
+					"torpor"];
 var banner;
 var bannerIndex = -1;
 var images = [];
