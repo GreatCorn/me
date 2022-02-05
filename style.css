@@ -78,10 +78,11 @@ TD {
 
 .Activity {
 	width: 192px;
-	height: 230px;
+	/*height: 230px;*/
 	background: #FFF;
 	display: inline-block;
-	padding: 12px;
+	/*padding: 12px;*/
+	/*padding-bottom: 32px;*/
 	margin: 8px;
 	white-space: nowrap;
 	text-align: center;

@@ -9,6 +9,7 @@ const banners = [	"bitonicOverflow",
 					"kurlykistan",
 					"peccata",
 					"symphony1",
+					"symphony3",
 					"torpor"];
 var banner;
 var bannerIndex = -1;
