@@ -8,6 +8,7 @@ const banners = [	"bitonicOverflow",
 					"dreath",
 					"kurlykistan",
 					"peccata",
+					"quartet1",
 					"symphony1",
 					"symphony3",
 					"torpor"];
