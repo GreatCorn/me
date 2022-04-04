@@ -384,6 +384,8 @@ function SwitchBanner(previous){
 			images[i].style.opacity = 0;
 	}
 	banner.href = "/me/work/"+banners[bannerIndex]+".html";
+	if (banners[bannerIndex] == "kurlykistan")
+		banner.href = "/me/work/kurlykistan/";
 	clearTimeout(switchTimer);
 	switchTimer = setTimeout(SwitchBanner, 5000);
 }
