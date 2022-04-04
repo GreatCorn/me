@@ -199,7 +199,7 @@ TD {
 	width: 100%;
 	position: fixed;
 	box-shadow: 0 0 8px black;
-	z-index: 12;
+	z-index: 96;
 	max-height: 48px;
 	text-shadow: 0 2px 3px LightGrey;
 }
