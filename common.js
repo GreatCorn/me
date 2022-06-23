@@ -2,13 +2,13 @@ var night = false;
 var nests;
 var navbar;
 
-const banners = [	"bitonicOverflow",
+const banners = [	"auroraNova",
+					"bitonicOverflow",
 					"bleaks",
 					"catDinner",
 					"dreath",
 					"kurlykistan",
 					"peccata",
-					"quartet1",
 					"symphony1",
 					"symphony3",
 					"torpor"];
