@@ -244,6 +244,10 @@ function FormContent(){
 	if (night) {
 		NightMode(true);
 	}
+	//FORM NUMBERED CONTAINERS
+	num = document.getElementsByClassName("Numbered");
+	for (i=0; i<num.length; ++i)
+		num[i].innerHTML += " ("+(num[i].parentNode.lastElementChild.firstElementChild.firstElementChild.children.length-1).toString()+")"; //bruh
 }
 
 function NightMode(mode) {
