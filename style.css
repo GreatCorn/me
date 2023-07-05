@@ -6,6 +6,10 @@
 	font-family: "rawline";
 	src: url("rawline-300.ttf");
 }
+@font-face {
+	font-family: "glyph";
+	src: url("Kurlykongardglyph-Plus.ttf");
+}
 A {
 	word-wrap: break-word;
 }
