@@ -3,14 +3,10 @@ var nests;
 var navbar;
 
 const banners = [	"auroraNova",
-					"bitonicOverflow",
-					"bleaks",
-					"catDinner",
 					"dreath",
 					"kurlykistan",
-					"peccata",
-					"symphony1",
-					"symphony3",
+					"masmze-3d",
+					"quartet2",
 					"torpor"];
 var banner;
 var bannerIndex = -1;
