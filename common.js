@@ -4,7 +4,6 @@ var navbar;
 
 const banners = [	"auroraNova",
 					"dreath",
-					"kurlykistan",
 					"masmze-3d",
 					"quartet2",
 					"torpor"];
