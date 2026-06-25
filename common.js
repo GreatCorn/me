@@ -5,8 +5,7 @@ var navbar;
 const banners = [	"auroraNova",
 					"dreath",
 					"masmze-3d",
-					"quartet2",
-					"torpor"];
+					"quartet2"];
 var banner;
 var bannerIndex = -1;
 var images = [];
